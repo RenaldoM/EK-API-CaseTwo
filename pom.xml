@@ -39,7 +39,11 @@
             <version>3.12.4</version> <!-- Aktuellste Version bis zu meinem Wissensstand im September 2021, bitte prüfen -->
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.4</version>
+        </dependency>
     </dependencies>
 
     <build>

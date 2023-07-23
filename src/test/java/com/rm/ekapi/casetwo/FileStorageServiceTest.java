@@ -1,8 +1,8 @@
 package com.rm.ekapi.casetwo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,7 @@ public class FileStorageServiceTest {
 
     @BeforeEach
     public void setUp() {
+        objectMapper.registerModule(new JavaTimeModule());
         fileStorageService = new FileStorageService(objectMapper);
     }
 
