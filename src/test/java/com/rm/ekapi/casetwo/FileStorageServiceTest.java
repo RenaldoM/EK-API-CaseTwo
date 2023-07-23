@@ -30,8 +30,8 @@ public class FileStorageServiceTest {
     @Test
     public void testLoadShoppingItems() throws IOException {
         List<ShoppingItem> mockItems = Arrays.asList(
-                new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1)),
-                new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1))
+                new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString()),
+                new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString())
         );
         Path path = Paths.get("shoppingList.txt");
         Files.write(path, objectMapper.writeValueAsBytes(mockItems));
@@ -48,8 +48,8 @@ public class FileStorageServiceTest {
     @Test
     public void testSaveShoppingItems() throws IOException {
         List<ShoppingItem> mockItems = Arrays.asList(
-                new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1)),
-                new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1))
+                new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString()),
+                new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString())
         );
 
         fileStorageService.saveShoppingItems(mockItems);

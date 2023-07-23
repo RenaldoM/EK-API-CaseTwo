@@ -17,14 +17,16 @@ public class ShoppingItem {
     private int quantity;
 
     @NotBlank
-    private String createdBy;
+    private String creatorName;
 
     private LocalDateTime createdDate;
 
-    @Future
-    private LocalDateTime dueDate;
+    private String dueDate;
 
-    public ShoppingItem(String apple, int i, String user1, LocalDateTime now, LocalDateTime localDateTime) {
+    public ShoppingItem() {
+    }
+
+    public ShoppingItem(String apple, int i, String user1, LocalDateTime now, String localDateTime) {
     }
 
     public String getObjectName() {
@@ -43,12 +45,12 @@ public class ShoppingItem {
         this.quantity = quantity;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -59,11 +61,11 @@ public class ShoppingItem {
         this.createdDate = createdDate;
     }
 
-    public LocalDateTime getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 }
