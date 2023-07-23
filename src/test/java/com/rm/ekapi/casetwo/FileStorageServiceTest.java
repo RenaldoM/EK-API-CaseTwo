@@ -1,15 +1,21 @@
 package com.rm.ekapi.casetwo;
 
-import org.junit.jupiter.api.Test;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileStorageServiceTest {
 
@@ -22,7 +28,7 @@ public class FileStorageServiceTest {
     }
 
     @Test
-    public void testLoadShoppingItems() {
+    public void testLoadShoppingItems() throws IOException {
         List<ShoppingItem> mockItems = Arrays.asList(
                 new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1)),
                 new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1))
@@ -40,7 +46,7 @@ public class FileStorageServiceTest {
     }
 
     @Test
-    public void testSaveShoppingItems() {
+    public void testSaveShoppingItems() throws IOException {
         List<ShoppingItem> mockItems = Arrays.asList(
                 new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1)),
                 new ShoppingItem("Banana", 5, "User2", LocalDateTime.now(), LocalDateTime.now().plusDays(1))
@@ -51,7 +57,8 @@ public class FileStorageServiceTest {
         Path path = Paths.get("shoppingList.txt");
         assertTrue(Files.exists(path));
         byte[] bytes = Files.readAllBytes(path);
-        List<ShoppingItem> loadedItems = objectMapper.readValue(bytes, new TypeReference<List<ShoppingItem>>() {});
+        List<ShoppingItem> loadedItems = objectMapper.readValue(bytes, new TypeReference<List<ShoppingItem>>() {
+        });
 
         assertEquals(mockItems.size(), loadedItems.size());
         assertEquals(mockItems.get(0).getObjectName(), loadedItems.get(0).getObjectName());

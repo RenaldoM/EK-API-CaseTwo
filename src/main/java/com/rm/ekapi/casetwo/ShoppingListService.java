@@ -26,7 +26,7 @@ public class ShoppingListService {
                 .findFirst();
     }
 
-    public void createItem(ShoppingItem shoppingItem) {
+    public ShoppingItem createItem(ShoppingItem shoppingItem) {
         List<ShoppingItem> shoppingItems = getAllItems();
         Optional<ShoppingItem> existingItem = getItem(shoppingItem.getObjectName());
 
@@ -38,15 +38,17 @@ public class ShoppingListService {
         }
 
         fileStorageService.saveShoppingItems(shoppingItems);
+        return shoppingItem;
     }
 
-    public void updateItem(String objectName, ShoppingItem shoppingItem) {
+    public ShoppingItem updateItem(String objectName, ShoppingItem shoppingItem) {
         List<ShoppingItem> shoppingItems = getAllItems();
         shoppingItems = shoppingItems.stream()
                 .map(item -> item.getObjectName().equalsIgnoreCase(objectName) ? shoppingItem : item)
                 .collect(Collectors.toList());
 
         fileStorageService.saveShoppingItems(shoppingItems);
+        return shoppingItem;
     }
 
     public void deleteItem(String objectName) {

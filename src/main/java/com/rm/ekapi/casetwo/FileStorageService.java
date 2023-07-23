@@ -14,6 +14,10 @@ public class FileStorageService {
     private static final String FILE_NAME = "shoppingList.txt";
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    public FileStorageService(ObjectMapper objectMapper) {
+        objectMapper = objectMapper;
+    }
+
     public List<ShoppingItem> loadShoppingItems() {
         try {
             Path path = Paths.get(FILE_NAME);
