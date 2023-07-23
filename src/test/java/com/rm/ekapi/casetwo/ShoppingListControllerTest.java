@@ -50,6 +50,16 @@ public class ShoppingListControllerTest {
                 .andExpect(jsonPath("$.size()").value(mockItems.size()));
     }
 
+    @Test
+    public void testGetItem() throws Exception {
+        ShoppingItem mockItem = new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString());
+        when(shoppingListService.getItem("Apple")).thenReturn(Optional.of(mockItem));
+
+        mockMvc.perform(get("/api/shoppingitems/Apple"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.objectName").value("Apple"));
+    }
 
     @Test
     public void testCreateItem() throws Exception {

@@ -34,5 +34,15 @@ public class ShoppingListServiceTest {
         assertEquals(mockItems.size(), items.size());
     }
 
+    @Test
+    public void testUpdateItem() {
+        ShoppingItem mockItem = new ShoppingItem("Apple", 10, "User1", LocalDateTime.now(), LocalDateTime.now().plusDays(1).toString());
+        when(fileStorageService.loadShoppingItems()).thenReturn(Arrays.asList(mockItem));
 
+        ShoppingItem updatedItem = new ShoppingItem("Apple", 5, "User1", null, LocalDateTime.now().plusDays(1).toString());
+        shoppingListService.updateItem("Apple", updatedItem);
+
+        verify(fileStorageService, times(1)).saveShoppingItems(any());
+    }
 }
+

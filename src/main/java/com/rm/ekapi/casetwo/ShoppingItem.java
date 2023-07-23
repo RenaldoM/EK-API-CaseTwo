@@ -1,6 +1,5 @@
 package com.rm.ekapi.casetwo;
 
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -26,7 +25,12 @@ public class ShoppingItem {
     public ShoppingItem() {
     }
 
-    public ShoppingItem(String apple, int i, String user1, LocalDateTime now, String localDateTime) {
+    public ShoppingItem(String name, int quantity, String creatorName, LocalDateTime now, String localDateTime) {
+        this.objectName = name;
+        this.quantity = quantity;
+        this.creatorName = creatorName;
+        this.createdDate = now;
+        this.dueDate = localDateTime;
     }
 
     public String getObjectName() {
