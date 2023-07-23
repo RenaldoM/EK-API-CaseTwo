@@ -14,8 +14,8 @@ public class FileStorageService {
     private static final String FILE_NAME = "shoppingList.txt";
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public FileStorageService(ObjectMapper objectMapper) {
-        objectMapper = objectMapper;
+    public FileStorageService(ObjectMapper objectMapper2) {
+        objectMapper = objectMapper2 != null ? objectMapper2 : objectMapper;
     }
 
     public List<ShoppingItem> loadShoppingItems() {
